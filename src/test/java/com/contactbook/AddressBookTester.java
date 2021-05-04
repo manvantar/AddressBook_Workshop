@@ -63,4 +63,12 @@ public class AddressBookTester {
         Assertions.assertEquals(false,negativeResult2);
     }
 
+    @Test
+    public  void givenMultipleContactsData_whenAddedContact_shouldReturnSizeOfAddressBook(){
+        addressBook =new AddressBook();
+        Contact[] contactsArray={contact,contact1,newContact,newContact2,contact};
+        int numberOfContactsAdded=addressBook.addMultipleContacts(contactsArray);
+        Assertions.assertEquals(4,numberOfContactsAdded);
+        }
+
 }

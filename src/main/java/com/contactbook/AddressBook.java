@@ -1,7 +1,6 @@
 package com.contactbook;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class AddressBook {
@@ -15,30 +14,20 @@ public class AddressBook {
     }
 
     /* This method is used to add the contact, if already exists in the contact book
-   not adding else adding
-   @param takes contact input
-   @return boolean value true if added else false
+    not adding else adding
+    @param takes contact input
+    @return boolean value true if added else false
     */
     public boolean addNewContact(Contact contact) {
         int bit_add = 0;
         if (contactlist.size() > 0) {
-            int i = 0;
-            while (i < contactlist.size() && bit_add == 0) {
-                Contact contactPresent = contactlist.get(i);
-                if (contact.equals(contactPresent)) {
-                    bit_add = 1;
-                    System.out.println("name available Present duplicate not allowed");
-                    return false;
-                }
-                i++;
-            }
-            if (bit_add == 0) {
-                contactlist.add(contact);
-                return true;
-            }
+            boolean checkExists=this.checkContactExists(contact);
+            if(checkExists==true)
+                return false;
         }
         contactlist.add(contact);
         return true;
+
     }
 
     /*This method is used to return Arraylist of contacts
@@ -190,5 +179,29 @@ public class AddressBook {
         return false;
     }
 
+    /* This method is used to add multiple contacts
+    @param takes array of contacts
+    @return number of contacts added
+    */
+    public int addMultipleContacts(Contact[] contactsArray) {
+        int contactsAdded=0;
+        if(contactsArray.length>0){
+            int i=0;
+            while(i<contactsArray.length){
+                boolean checkadded=this.addNewContact(contactsArray[i]);
+                if(checkadded==true)
+                    contactsAdded++;
+                i++;
+            }
+        }
+        return contactsAdded;
+    }
+
+    /* This method is used to get size of AddessBook
+    return size of contactList
+     */
+    public int getSizeOfAddressBook(){
+        return contactlist.size();
+    }
 
 }
