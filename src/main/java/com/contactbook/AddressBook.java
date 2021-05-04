@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class AddressBook {
 
-    static ArrayList<Contact> contactlist = new ArrayList<Contact>();
+    public ArrayList<Contact> contactlist = new ArrayList<Contact>();
 
     /* this method is used to display welcom message
      */
@@ -67,9 +67,9 @@ public class AddressBook {
     /*This method is used to take input form console and add new contact to AddressBook
     @return boolen value
      */
-    public static boolean addNewContactFromConsole(){
+    public  boolean addNewContactFromConsole(){
         Scanner consoleInputReader=new Scanner(System.in);
-        contactlist.add(new Contact(consoleInputReader));
+        this.contactlist.add(new Contact(consoleInputReader));
         return true;
     }
 
@@ -204,4 +204,8 @@ public class AddressBook {
         return contactlist.size();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
 }

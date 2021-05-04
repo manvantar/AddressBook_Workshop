@@ -13,10 +13,15 @@ public class AddressBookTester {
             ,966339366,"manukvshetty@gmail.com");
     Contact contact1=new Contact("Srinivas","Kv","Bengaluru","Karnataka",560076
             ,526157122,"srinivas@gmail.com");
-    Contact newContact =new Contact("Manu","re","indore","MP",
+    Contact newContact =new Contact("Pwanu","re","indore","MP",
             21212,6876786,"manushetty7799@gmail.com");
-    Contact newContact2 =new Contact("Manuew","re","indore","MP",
+    Contact newContact2 =new Contact("Manoj","re","indore","MP",
             21212,6876786,"manushetty7799@gmail.com");
+    Contact contact6= new Contact("Santhosh","Kv","Bengaluru","Karnataka",560076
+            ,212139366,"manukvshetty@gmail.com");
+    AddressBook addressBookFamily=new AddressBook();
+    AddressBook addressBookFriends=new AddressBook();
+    MultipleAdressBookContainer multipleAdressBookContainer=new MultipleAdressBookContainer();
 
     @Test
     public void givenAddressbook_whenAdded_shouldReturnContactList(){
@@ -69,6 +74,19 @@ public class AddressBookTester {
         Contact[] contactsArray={contact,contact1,newContact,newContact2,contact};
         int numberOfContactsAdded=addressBook.addMultipleContacts(contactsArray);
         Assertions.assertEquals(4,numberOfContactsAdded);
+    }
+
+    @Test
+    public void givenMultipleAddressBooks_whenAdded_shouldReturnNumberOfAddressBooks(){
+        Contact[] contactsArray={contact,contact1,newContact,contact};
+        Contact[] contactsArray2={contact,contact1,contact6,newContact2};
+        AddressBook addressBookHome=new AddressBook();
+        addressBookFamily.addMultipleContacts(contactsArray);
+        addressBookFriends.addMultipleContacts(contactsArray2);
+        multipleAdressBookContainer.addAddressBookList("Family",addressBookFamily);
+        multipleAdressBookContainer.addAddressBookList("Friends",addressBookFriends);
+        Assertions.assertEquals(2,addressBookFriends.contactlist.size());
+        Assertions.assertEquals(addressBookFamily,multipleAdressBookContainer.addressBookDictionary.get("Family"));
     }
 
 }
