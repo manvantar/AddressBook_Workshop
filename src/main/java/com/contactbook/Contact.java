@@ -3,28 +3,73 @@ package com.contactbook;
 import java.util.Objects;
 
 public class Contact {
-    String firstname;
-    String lastname;
+    String firstName;
+    String lastName;
     String city;
     String state;
     int zip;
-    String PhoneNumber;
+    int phoneNumber;
     String email;
 
     /* Constructor to initialize global variables
     @param firstname,lastname,city,state,zip,PhoneNumber,email
      */
-    public Contact(String firstname, String lastname, String city, String state, int zip, String mob, String email) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public Contact(String firstName, String lastName, String city, String state, int zip, int mob, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.city = city;
         this.state = state;
         this.zip = zip;
-        this.PhoneNumber = mob;
+        this.phoneNumber = mob;
         this.email = email;
     }
 
-    public Contact() {
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public int getZip() {
+        return zip;
+    }
+
+    public void setZip(int zip) {
+        this.zip = zip;
+    }
+
+    public int getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(int phoneNumber) {
+        phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
@@ -32,12 +77,12 @@ public class Contact {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Contact contact = (Contact) o;
-        return zip == contact.zip && Objects.equals(firstname, contact.firstname) && Objects.equals(lastname, contact.lastname) && Objects.equals(city, contact.city) && Objects.equals(state, contact.state) && Objects.equals(PhoneNumber, contact.PhoneNumber) && Objects.equals(email, contact.email);
+        return zip == contact.zip && phoneNumber == contact.phoneNumber && Objects.equals(firstName, contact.firstName) && Objects.equals(lastName, contact.lastName) && Objects.equals(city, contact.city) && Objects.equals(state, contact.state) && Objects.equals(email, contact.email);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstname, lastname, city, state, zip, PhoneNumber, email);
+        return Objects.hash(firstName, lastName, city, state, zip, phoneNumber, email);
     }
 }
 
