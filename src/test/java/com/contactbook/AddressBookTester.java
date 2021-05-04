@@ -9,13 +9,13 @@ public class AddressBookTester {
     AddressBook addressBook;
 
     @Test
-    public void whenGivenAddressbook_whenAdded_shouldReturnContact(){
+    public void whenGivenAddressbook_whenAdded_shouldReturnContactList(){
         addressBook=new AddressBook();
         addressBook.message();
         Contact contact= new Contact("Manu","Kv","Bengaluru","Karnataka",560076
-                ,"9663393660","manukvshetty@gmail.com");
+                ,966339366,"manukvshetty@gmail.com");
         Contact contact1=new Contact("Srinivas","Kv","Bengaluru","Karnataka",560076
-                ,"526157122","srinivas@gmail.com");
+                ,526157122,"srinivas@gmail.com");
         addressBook.addNewContact(contact);
         addressBook.addNewContact(contact1);
         ArrayList<Contact> contactList= addressBook.getContactlist();
