@@ -69,6 +69,6 @@ public class AddressBookTester {
         Contact[] contactsArray={contact,contact1,newContact,newContact2,contact};
         int numberOfContactsAdded=addressBook.addMultipleContacts(contactsArray);
         Assertions.assertEquals(4,numberOfContactsAdded);
-        }
+    }
 
 }
