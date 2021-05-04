@@ -44,6 +44,10 @@ public class MultipleAdressBookContainer {
             return false;
     }
 
+    /*This method used to search contacts in each AddressBookList by particularCity
+    @param takes city name
+    return List of Contacts in particular city
+    */
     public List<Contact> getContactsByCity(String city) {
         List<Contact> contactList = new ArrayList<>();
         if (addressBookDictionary.size() > 0) {
@@ -59,4 +63,5 @@ public class MultipleAdressBookContainer {
         }
         return contactList;
     }
+
 }
