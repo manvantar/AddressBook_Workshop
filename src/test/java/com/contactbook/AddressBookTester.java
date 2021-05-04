@@ -18,9 +18,6 @@ public class AddressBookTester {
                 ,526157122,"srinivas@gmail.com");
         addressBook.addNewContact(contact);
         addressBook.addNewContact(contact1);
-        AddressBook addressBook2=new AddressBook();
-        addressBook2.addNewContact(contact);
-        addressBook2.addNewContact(contact1);
         ArrayList<Contact> contactList= addressBook.getContactlist();
         Assertions.assertEquals(2,contactList.size());
     }
