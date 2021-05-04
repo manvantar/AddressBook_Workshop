@@ -2,6 +2,7 @@ package com.contactbook;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class AddressBook {
 
@@ -29,4 +30,17 @@ public class AddressBook {
         return contactlist;
     }
 
+    public static void main(String[] args) {
+        AddressBook addressBook=new AddressBook();
+        addressBook.addNewContactFromConsole();
+    }
+
+    /*This method is used to take input form console and add new contact to AddressBook
+    @return boolen value
+     */
+    public boolean addNewContactFromConsole(){
+        Scanner consoleInputReader=new Scanner(System.in);
+        contactlist.add(new Contact(consoleInputReader));
+        return true;
+    }
 }

@@ -9,7 +9,7 @@ public class AddressBookTester {
     AddressBook addressBook;
 
     @Test
-    public void whenGivenAddressbook_whenAdded_shouldReturnContactList(){
+    public void givenAddressbook_whenAdded_shouldReturnContactList(){
         addressBook=new AddressBook();
         addressBook.message();
         Contact contact= new Contact("Manu","Kv","Bengaluru","Karnataka",560076
@@ -20,5 +20,11 @@ public class AddressBookTester {
         addressBook.addNewContact(contact1);
         ArrayList<Contact> contactList= addressBook.getContactlist();
         Assertions.assertEquals(2,contactList.size());
+    }
+
+    @Test
+    public void givenContactsDataFromConsole_WhenAdded_shouldReturnTrue(){
+        addressBook=new AddressBook();
+        Assertions.assertTrue(addressBook.addNewContactFromConsole());
     }
 }
