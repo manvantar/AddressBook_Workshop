@@ -3,9 +3,12 @@ package com.contactbook;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.DisabledForJreRange;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 public class AddressBookTester {
     AddressBook addressBook;
@@ -80,7 +83,6 @@ public class AddressBookTester {
     public void givenMultipleAddressBooks_whenAdded_shouldReturnNumberOfAddressBooks(){
         Contact[] contactsArray={contact,contact1,newContact,contact};
         Contact[] contactsArray2={contact,contact1,contact6,newContact2};
-        AddressBook addressBookHome=new AddressBook();
         addressBookFamily.addMultipleContacts(contactsArray);
         addressBookFriends.addMultipleContacts(contactsArray2);
         multipleAdressBookContainer.addAddressBookList("Family",addressBookFamily);
@@ -89,4 +91,18 @@ public class AddressBookTester {
         Assertions.assertEquals(addressBookFamily,multipleAdressBookContainer.addressBookDictionary.get("Family"));
     }
 
+    @Test
+    public void givenMultipleAddressBooks_whenSearchedForParticularCity_shouldReturnContacts(){
+        Contact[] contactsArray={contact,contact1,newContact,contact};
+        Contact[] contactsArray2={contact,contact1,contact6,newContact2};
+        addressBookFamily.addMultipleContacts(contactsArray);
+        addressBookFriends.addMultipleContacts(contactsArray2);
+        multipleAdressBookContainer.addAddressBookList("Family",addressBookFamily);
+        multipleAdressBookContainer.addAddressBookList("Friends",addressBookFriends);
+        List<Contact> contactListInCity=multipleAdressBookContainer.getContactsByCity("indore");
+        Assertions.assertEquals("indore",contactListInCity.get(0).city);
+        Assertions.assertEquals(2,contactListInCity.size());
+        List<Contact> contactListInCity2=multipleAdressBookContainer.getContactsByCity("mysore");
+        Assertions.assertEquals(0,contactListInCity2.size());
+    }
 }
