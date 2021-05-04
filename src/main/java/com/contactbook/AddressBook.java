@@ -170,4 +170,25 @@ public class AddressBook {
                 .orElse(null);
     }
 
+    /* This method is used to delete the contact,only  if exists in the contact book
+    @param takes FirstName and LastName
+    @return true if contact deleted else false
+     */
+    public boolean deleteContact(String firstName, String lastName) {
+        if (contactlist.size() > 0) {
+            int i = 0;
+            while (i < contactlist.size()) {
+                Contact contactPresent = contactlist.get(i);
+                if ((firstName+lastName).equals(contactPresent.firstName+contactPresent.lastName)) {
+                    contactlist.remove(i);
+                    return true;
+                }
+                i++;
+            }
+            return false;
+        }
+        return false;
+    }
+
+
 }

@@ -52,4 +52,15 @@ public class AddressBookTester {
         Assertions.assertEquals(false,addressBook.updateContact(oldContact2,newContact2));
     }
 
+    @Test
+    public  void givenContactsData_whenDeletedContact_shouldReturnDeletedContact(){
+        addressBook =new AddressBook();
+        addressBook.addNewContact(contact);
+        addressBook.addNewContact(contact1);
+        boolean positiveResult=addressBook.deleteContact("Manu","Kv");
+        Assertions.assertTrue(positiveResult);
+        boolean negativeResult2=addressBook.deleteContact("Manu","Kv");
+        Assertions.assertEquals(false,negativeResult2);
+    }
+
 }
