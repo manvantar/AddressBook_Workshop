@@ -181,4 +181,13 @@ public class AddressBookTester {
         List<Contact> contactList=addressBook.readFromFileCSVfileusingOpenCSV(fileName);
         Assertions.assertEquals(contact,contactList.get(0));
     }
+
+    @Test
+    public void givenFileNameOfJSONfile_whenLoadedUsingJSON_shouldWriteContactsDataToFile() throws IOException {
+        File fileName= new File("/home/mkv/Desktop/contacts.json");
+        if(fileName.exists())
+            fileName.delete();
+        boolean writternToFile=addressBookFriends.writeToJSONFile(fileName);
+        Assertions.assertTrue(writternToFile);
+    }
 }

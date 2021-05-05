@@ -3,6 +3,7 @@ package com.contactbook;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import com.opencsv.exceptions.CsvValidationException;
+import org.json.simple.JSONObject;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -59,6 +60,44 @@ public class ContactsIOoperation {
         catch (CsvException e) { e.printStackTrace();}
         catch (ArrayIndexOutOfBoundsException e){ e.printStackTrace();}
         return addressBook.contactlist;
+    }
+
+    /* This method is used write JSonFile,
+    @param takes filename
+    @return bollean value
+    */
+    public boolean writeToFileJson(List<Contact> contactList,File fileName) throws IOException {
+        for (int i = 0; i < contactList.size(); i++) {
+            Contact contact = contactList.get(i);
+            JSONObject jsObject=new JSONObject();
+            JSONObject obj=new JSONObject();
+            jsObject.put("id",i);
+            jsObject.put("firstname",contact.firstName);
+            jsObject.put("lastname",contact.lastName);
+            jsObject.put("phoneNumber",contact.phoneNumber);
+            jsObject.put("city",contact.city);
+            jsObject.put("state",contact.state);
+            jsObject.put("zip",contact.zip);
+            jsObject.put("email",contact.email);
+            BufferedWriter fileWriter=new BufferedWriter(new FileWriter(fileName, true));
+            try {
+                char doubleQuotes='"';
+                if(i==0)
+                    fileWriter.append("{ "+ doubleQuotes+"contact"+doubleQuotes+":[");
+                fileWriter.append(jsObject.toJSONString());
+                if(i<contactList.size()-1)
+                    fileWriter.append(",\n");
+                if(i==contactList.size()-1)
+                    fileWriter.append("]}");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            finally {
+                fileWriter.flush();
+                fileWriter.close();
+            }
+        }
+        return true;
     }
 
 }
