@@ -105,4 +105,15 @@ public class AddressBookTester {
         List<Contact> contactListInCity2=multipleAdressBookContainer.getContactsByCity("mysore");
         Assertions.assertEquals(0,contactListInCity2.size());
     }
+
+    @Test
+    public void givenMultipleAddressBooks_whenSearchedForParticularState_shouldReturnContacts2(){
+        Contact[] contactsArray={contact,contact1,newContact,contact};
+        addressBookFriends.addMultipleContacts(contactsArray);
+        List<Contact> contactListInState=addressBookFriends.getContactsByState("MP");
+        Assertions.assertEquals("MP",contactListInState.get(0).state);
+        List<Contact> contactListInState2=addressBookFriends.getContactsByState("kerala");
+        Assertions.assertEquals(0,contactListInState2.size());
+
+    }
 }

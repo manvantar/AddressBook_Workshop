@@ -1,9 +1,7 @@
 package com.contactbook;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class MultipleAdressBookContainer {
 
@@ -64,4 +62,28 @@ public class MultipleAdressBookContainer {
         return contactList;
     }
 
+    /*This method used to search contacts in each AddressBookList by particularCity
+    @param takes city name
+    return List of Contacts in particular city
+    */
+    public List<Contact> getContactsByCityByStreams(String city) {
+        List<Contact> contactList1 = null;
+        if (addressBookDictionary.size() > 0) {
+            String key[] = addressBookDictionary.keySet().toArray(new String[0]);
+            for (int i = 0; i < addressBookDictionary.size(); i++) {
+                AddressBook tempAddressBook = addressBookDictionary.get(key[i]);
+                List<Contact> contactList=tempAddressBook.contactlist;
+                List<Contact> cityContacts=checkContactsbyCity(contactList,city);
+                contactList1.addAll(cityContacts);
+            }
+        }
+        return contactList1;
+    }
+
+    private List<Contact> checkContactsbyCity(List<Contact> contactlist, String sample_city) {
+        List<Contact> contactListsa=contactlist.stream().filter(contact -> contact.getCity().equals(sample_city)).
+                collect(Collectors.toList());
+        return contactListsa;
+
+    }
 }
