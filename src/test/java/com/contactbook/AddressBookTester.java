@@ -116,4 +116,15 @@ public class AddressBookTester {
         Assertions.assertEquals(0,contactListInState2.size());
 
     }
+
+    @Test
+    public void givenMultipleContactsBooks_whenSearchedForParticularState_shouldReturnCountOfContacts(){
+        Contact[] contactsArray={contact,contact1,newContact,contact};
+        addressBookFriends.addMultipleContacts(contactsArray);
+        int countByState=addressBookFriends.getCountOfContactsByState("MP");
+        int countByState2=addressBookFriends.getCountOfContactsByState("kerala");
+        Assertions.assertEquals(1,countByState);
+        Assertions.assertEquals(0,countByState2);
+    }
+
 }

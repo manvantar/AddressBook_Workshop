@@ -231,4 +231,13 @@ public class AddressBook {
                 .collect(Collectors.toList());
         return contactsByState;
     }
+
+    /*This method used to get contacts in each AddressBookList by particularState
+    @param takes State name
+    return count of Contacts in particular State
+    */
+    public int getCountOfContactsByState(String State) {
+        List<Contact> contactList=getContactsByState(State);
+        return contactList.size();
+    }
 }
