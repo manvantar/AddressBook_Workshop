@@ -12,12 +12,12 @@ import java.util.stream.Stream;
 
 public class AddressBookTester {
     AddressBook addressBook;
-    Contact contact= new Contact("Manu","Kv","Bengaluru","Karnataka",560076
+    Contact contact= new Contact("Manu","Kv","Bengaluru","Andhra",212121
             ,966339366,"manukvshetty@gmail.com");
-    Contact contact1=new Contact("Srinivas","Kv","Bengaluru","Karnataka",560076
+    Contact contact1=new Contact("Srinivas","Kv","Bengaluru","MP",560076
             ,526157122,"srinivas@gmail.com");
-    Contact newContact =new Contact("Pavan","re","indore","MP",
-            21212,6876786,"manushetty7799@gmail.com");
+    Contact newContact =new Contact("Pavan","re","indore","Kerala",
+            100076  ,6876786,"manushetty7799@gmail.com");
     Contact newContact2 =new Contact("Manoj","re","indore","MP",
             21212,6876786,"manushetty7799@gmail.com");
     Contact contact6= new Contact("Santhosh","Kv","Bengaluru","Karnataka",560076
@@ -138,6 +138,22 @@ public class AddressBookTester {
         Assertions.assertEquals("Manu",contcatListSortedByNames.get(0).firstName);
         Assertions.assertEquals("Pavan",contcatListSortedByNames.get(1).firstName);
         Assertions.assertEquals("Srinivas",contcatListSortedByNames.get(2).firstName);
+    }
+
+    @Test
+    public void givenMultipleContactsBooks_whenAskedForSortingByState_shouldReturnContactsInSortedFormat() {
+        List<Contact> contcatListSortedByStates=addressBookFriends.sortByStates();
+        Assertions.assertEquals("Andhra",contcatListSortedByStates.get(0).state);
+        Assertions.assertEquals("Kerala",contcatListSortedByStates.get(1).state);
+        Assertions.assertEquals("MP",contcatListSortedByStates.get(2).state);
+    }
+
+    @Test
+    public void givenMultipleContactsBooks_whenAskedForSortingByZIP_shouldReturnContactsInSortedFormat() {
+        List<Contact> contcatListSortedByZIP=addressBookFriends.sortByZIP();
+        Assertions.assertEquals(100076,contcatListSortedByZIP.get(0).zip);
+        Assertions.assertEquals(212121,contcatListSortedByZIP.get(1).zip);
+        Assertions.assertEquals(560076,contcatListSortedByZIP.get(2).getZip());
     }
 }
 

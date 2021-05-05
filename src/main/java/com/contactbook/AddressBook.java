@@ -239,13 +239,29 @@ public class AddressBook {
     }
 
     /*This method used to get Sorted contacts by FirstName
-    * return sorted contactslist
-    */
+     * return sorted contactslist
+     */
     public List<Contact> sortByNames() {
         List<Contact> newContactList=new ArrayList<>(contactlist);
-        // List<String> names=contactlist.stream().sorted((contact, t1) -> t1.firstName+t1.lastName.compareTo())
         newContactList.sort(Comparator.comparing(Contact::getFirstName));
         return newContactList;
     }
 
+    /*This method used to get Sorted contacts by State
+     * return sorted contactslist by state
+     */
+    public List<Contact> sortByStates() {
+        List<Contact> newContactList=new ArrayList<>(contactlist);
+        newContactList.sort(Comparator.comparing(Contact::getState));
+        return newContactList;
+    }
+
+    /*This method used to get Sorted contacts by ZIP
+     * return sorted contactslist by ZIP
+     */
+    public List<Contact> sortByZIP() {
+        List<Contact> newContactList=new ArrayList<>(contactlist);
+        newContactList.sort(Comparator.comparing(Contact::getZip));
+        return newContactList;
+    }
 }
