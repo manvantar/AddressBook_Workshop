@@ -19,7 +19,7 @@ public class Contact {
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
-        this.state = state;
+            this.state = state;
         this.zip = zip;
         this.phoneNumber = mob;
         this.email = email;

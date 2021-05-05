@@ -5,6 +5,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledForJreRange;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -155,6 +157,28 @@ public class AddressBookTester {
         Assertions.assertEquals(212121,contcatListSortedByZIP.get(1).zip);
         Assertions.assertEquals(560076,contcatListSortedByZIP.get(2).getZip());
     }
+
+
+    @Test
+    public void givenMultipleContactsBooks_whenAskedToWriteToFile_shouldDeleteTheFileIfExistsThenWriteReturnTrue() throws IOException {
+        File fileName= new File("/home/mkv/Desktop/contacts.csv");
+        if(fileName.exists())
+            fileName.delete();
+        Assertions.assertTrue(!fileName.exists());
+        Assertions.assertTrue(addressBookFriends.WriteToFile(fileName));
+    }
+
+    @Test
+    public void givenFileName_whenChecked_shouldReturnTrueIfExists(){
+        File fileName= new File("/home/mkv/Desktop/contacts.csv");
+        Assertions.assertTrue(fileName.exists());
+    }
+
+    @Test
+    public void givenFileNameOfCSV_whenLoadedUsingCSVreader_shouldReturnAddressBook() throws IOException {
+        File fileName= new File("/home/mkv/Desktop/contacts.csv");
+        AddressBook addressBook=new AddressBook();
+        List<Contact> contactList=addressBook.readFromFileCSVfileusingOpenCSV(fileName);
+        Assertions.assertEquals(contact,contactList.get(0));
+    }
 }
-
-

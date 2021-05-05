@@ -88,6 +88,6 @@ public class MultipleAdressBookContainer {
         List<Contact> contactListsa=contactlist.stream().filter(contact -> contact.getCity().equals(sample_city)).
                 collect(Collectors.toList());
         return contactListsa;
-
     }
+
 }

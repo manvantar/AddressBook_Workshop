@@ -1,5 +1,7 @@
 package com.contactbook;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -220,9 +222,9 @@ public class AddressBook {
     }
 
     /*This method used to search contacts in each AddressBookList by particularState
-    @param takes State name
-    return List of Contacts in particular State
-    */
+     * @param takes State name
+     * @return List of Contacts in particular State
+     */
     public List<Contact> getContactsByState(String sample_state) {
         List<Contact> contactsByState = contactlist.stream().filter(contac -> contac.state.equals(sample_state))
                 .collect(Collectors.toList());
@@ -230,16 +232,16 @@ public class AddressBook {
     }
 
     /*This method used to get contacts in each AddressBookList by particularState
-    @param takes State name
-    return count of Contacts in particular State
-    */
+     * @param takes State name
+     * @return count of Contacts in particular State
+     */
     public int getCountOfContactsByState(String State) {
         List<Contact> contactList=getContactsByState(State);
         return contactList.size();
     }
 
     /*This method used to get Sorted contacts by FirstName
-     * return sorted contactslist
+     * @return sorted contactslist
      */
     public List<Contact> sortByNames() {
         List<Contact> newContactList=new ArrayList<>(contactlist);
@@ -248,7 +250,7 @@ public class AddressBook {
     }
 
     /*This method used to get Sorted contacts by State
-     * return sorted contactslist by state
+     * @return sorted contactslist by state
      */
     public List<Contact> sortByStates() {
         List<Contact> newContactList=new ArrayList<>(contactlist);
@@ -257,11 +259,30 @@ public class AddressBook {
     }
 
     /*This method used to get Sorted contacts by ZIP
-     * return sorted contactslist by ZIP
+     * @return sorted contactslist by ZIP
      */
     public List<Contact> sortByZIP() {
         List<Contact> newContactList=new ArrayList<>(contactlist);
         newContactList.sort(Comparator.comparing(Contact::getZip));
         return newContactList;
+    }
+
+    /*This method used to contactsList data into File
+     * @param File to be writtenData
+     * @return boolean value file written or not
+     */
+    public boolean WriteToFile(File filename) throws IOException {
+        ContactsIOoperation contactsIOoperation=new ContactsIOoperation();
+        boolean result=contactsIOoperation.writeToFile(contactlist,filename);
+        return result;
+    }
+
+    /*This method used to read contactsList data from a File
+     * @param File to read csv file
+     * @return boolean value file written or not
+     */
+    public List<Contact> readFromFileCSVfileusingOpenCSV(File filename) throws IOException {
+        ContactsIOoperation contactsIOoperation=new ContactsIOoperation();
+        return contactsIOoperation.readFromCsv(filename);
     }
 }
