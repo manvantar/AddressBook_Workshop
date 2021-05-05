@@ -238,10 +238,14 @@ public class AddressBook {
         return contactList.size();
     }
 
+    /*This method used to get Sorted contacts by FirstName
+    * return sorted contactslist
+    */
     public List<Contact> sortByNames() {
         List<Contact> newContactList=new ArrayList<>(contactlist);
         // List<String> names=contactlist.stream().sorted((contact, t1) -> t1.firstName+t1.lastName.compareTo())
         newContactList.sort(Comparator.comparing(Contact::getFirstName));
         return newContactList;
     }
+
 }
