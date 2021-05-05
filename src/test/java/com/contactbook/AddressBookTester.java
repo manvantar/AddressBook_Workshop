@@ -16,7 +16,7 @@ public class AddressBookTester {
             ,966339366,"manukvshetty@gmail.com");
     Contact contact1=new Contact("Srinivas","Kv","Bengaluru","Karnataka",560076
             ,526157122,"srinivas@gmail.com");
-    Contact newContact =new Contact("Pwanu","re","indore","MP",
+    Contact newContact =new Contact("Pavan","re","indore","MP",
             21212,6876786,"manushetty7799@gmail.com");
     Contact newContact2 =new Contact("Manoj","re","indore","MP",
             21212,6876786,"manushetty7799@gmail.com");
@@ -127,4 +127,18 @@ public class AddressBookTester {
         Assertions.assertEquals(0,countByState2);
     }
 
+    @BeforeEach
+    public void load() {
+        Contact[] contactsArray = {contact, contact1, newContact};
+        addressBookFriends.addMultipleContacts(contactsArray);
+    }
+    @Test
+    public void givenMultipleContactsBooks_whenAskedForSortingByFirstName_shouldReturnContactsInSortedFormat() {
+        List<Contact> contcatListSortedByNames=addressBookFriends.sortByNames();
+        Assertions.assertEquals("Manu",contcatListSortedByNames.get(0).firstName);
+        Assertions.assertEquals("Pavan",contcatListSortedByNames.get(1).firstName);
+        Assertions.assertEquals("Srinivas",contcatListSortedByNames.get(2).firstName);
+    }
 }
+
+

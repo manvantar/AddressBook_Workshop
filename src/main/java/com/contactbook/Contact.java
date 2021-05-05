@@ -58,6 +58,11 @@ public class Contact {
         return city;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
+
     public void setCity(String city) {
         this.city = city;
     }

@@ -80,6 +80,10 @@ public class MultipleAdressBookContainer {
         return contactList1;
     }
 
+    /*This method used to search contacts in each AddressBookList by particularCity
+    * @param takes contactsList, cityName
+    * return List of Contacts in particular city
+    */
     private List<Contact> checkContactsbyCity(List<Contact> contactlist, String sample_city) {
         List<Contact> contactListsa=contactlist.stream().filter(contact -> contact.getCity().equals(sample_city)).
                 collect(Collectors.toList());
