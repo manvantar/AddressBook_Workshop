@@ -1,14 +1,15 @@
 package com.contactbook;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ContactsDBService {
 
     /*This method used to Connect Database and return Connection instance
-    * @param takes host name, Database name, Username, and Password
-    * @return connection
+     * @param takes host name, Database name, Username, and Password
+     * @return connection
      */
 
     private Connection getConnection(String host, String DBname, String userName, String password) throws SQLException, SQLException {
@@ -26,10 +27,18 @@ public class ContactsDBService {
     /*This Method used to read the data from Database using query
     which uses Connection method to create a connection to Database after retrieving the data from
     creates instance of contact for every data retrieved and stores in  contactlist
-    @returns list of contacts data
+    * @Param it takes query
+    * @returns list of contacts data
      */
-    public List<Contact> readData() throws SQLException {
-        String sql="Select firstname,lastname , city, state, zip, PhoneNumber , email from contact";
+    public List<Contact> readData(String query) throws SQLException {
+        String sql=null;
+        if (query==null) {
+            sql = "Select firstname,lastname , city, state, zip, PhoneNumber , email from contact";
+        }
+        else
+        {
+            sql =query;
+        }
         List<Contact> contactlist=new ArrayList<>();
         try(Connection connection = this.getConnection("localhost","contact_book",
                 "root","1234");) {
@@ -70,5 +79,15 @@ public class ContactsDBService {
             e.printStackTrace();
         }
         return false;
+    }
+
+    /*This method used to read contactsList data From DB for specific time which inturn calls readData()
+     * @param startdate and endDate
+     * @return contactlist
+     */
+    public List<Contact> getDataByDates(LocalDate startDate, LocalDate endDate) throws SQLException {
+        String query="Select firstname,lastname , city, state, zip, PhoneNumber , email from contact where date(added_time)" +
+                " between '"+startDate+"'" + " and '"+endDate+"'";
+        return readData(query);
     }
 }

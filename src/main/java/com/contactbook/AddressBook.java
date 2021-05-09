@@ -3,6 +3,7 @@ package com.contactbook;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -296,7 +297,7 @@ public class AddressBook {
      */
     public List<Contact> getDataFromDB() throws SQLException {
         ContactsDBService contactsDBService=new ContactsDBService();
-        return contactsDBService.readData();
+        return contactsDBService.readData(null);
     }
 
     /*This method used to update PhoneNumber for a contact and sync with Contactlist
@@ -318,4 +319,12 @@ public class AddressBook {
         return false;
     }
 
+    /*This method used to read contactsList data From DB for specific time
+     * @param startdate and endDate
+     * @return contactlist
+     */
+    public List<Contact> getContactDBbyDate(LocalDate startDate, LocalDate endDate) throws SQLException {
+        ContactsDBService contactsDBService=new ContactsDBService();
+        return contactsDBService.getDataByDates(startDate,endDate);
+    }
 }
