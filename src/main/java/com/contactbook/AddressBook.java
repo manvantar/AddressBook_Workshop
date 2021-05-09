@@ -2,6 +2,7 @@ package com.contactbook;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -293,5 +294,13 @@ public class AddressBook {
     public boolean writeToJSONFile(File fileName) throws IOException {
         ContactsIOoperation contactsIOoperation=new ContactsIOoperation();
         return contactsIOoperation.writeToFileJson(this.contactlist,fileName);
+    }
+
+    /*This method used to read contactsList data From DB
+     * @return contactlist
+     */
+    public List<Contact> getDataFromDB() throws SQLException {
+        ContactsDBService contactsDBService=new ContactsDBService();
+        return contactsDBService.readData();
     }
 }
