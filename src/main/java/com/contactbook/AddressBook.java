@@ -92,11 +92,6 @@ public class AddressBook {
                     }
                 }
             }
-            else
-            {
-                System.out.println("name not available to edit");
-                return false;
-            }
         }
         System.out.println("No contacts");
         return false;
@@ -303,4 +298,24 @@ public class AddressBook {
         ContactsDBService contactsDBService=new ContactsDBService();
         return contactsDBService.readData();
     }
+
+    /*This method used to update PhoneNumber for a contact and sync with Contactlist
+     * @return boolean value for updation
+     */
+    public boolean updatePhoneNumberDB(String firstName,String lastName,int phoneNumber) throws SQLException {
+        ContactsDBService contactsDBService=new ContactsDBService();
+        Contact oldContact=null;
+        boolean checkupdate = false;
+        try{oldContact=this.getContact(firstName,lastName);
+            Contact newContact=oldContact;
+            newContact.phoneNumber=phoneNumber;
+            checkupdate=this.updateContact(oldContact,newContact);}
+        catch(NullPointerException e){
+        }
+        if(checkupdate==true){
+            return contactsDBService.updateEmployeeDataUsingStatement(firstName,lastName,phoneNumber);
+        }
+        return false;
+    }
+
 }

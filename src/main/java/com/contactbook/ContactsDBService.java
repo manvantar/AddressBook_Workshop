@@ -53,4 +53,22 @@ public class ContactsDBService {
         }
         return contactlist;
     }
+
+    /*This method used to update the phoneNumber
+    @ param takes parameters firtstname and lastname and phoneNumber
+    @ return boolean value true if updated successfully else false
+    */
+    public boolean updateEmployeeDataUsingStatement(String firstName,String lastName, int phoneNumber) {
+        String sql1="update contact set PhoneNumber="+phoneNumber+" where firstname='"+firstName+"' and lastname='"+lastName+"'";
+        try(Connection connection = this.getConnection("localhost","contact_book",
+                "root","1234");) {
+            Statement statement = connection.createStatement();
+            int result= statement.executeUpdate(sql1);
+            if (result==1)
+                return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
