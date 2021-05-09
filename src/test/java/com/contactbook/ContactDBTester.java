@@ -66,4 +66,18 @@ public class ContactDBTester {
         Assertions.assertEquals(contact1,contactListbyDate.get(0));
     }
 
+    @Test
+    public void givenCityName_whenSearchedByQuery_shouldReturnContactsInCity() throws SQLException {
+        List<Contact> contactsListCityDB = addressBook.getContactsBySCityDB("Bengaluru");
+        List<Contact> contactListCity=addressBook.getContactsByCity("Bengaluru");
+        Assertions.assertEquals(contactListCity,contactsListCityDB);
+    }
+
+    @Test
+    public void givenNonExistingCityName_whenSearchedByQuery_shouldReturnZeroContactsList() throws SQLException {
+        List<Contact> contactsListCityDB = addressBook.getContactsBySCityDB("Belagavi");
+        List<Contact> contactListCity=addressBook.getContactsByCity("Belagavi");
+        Assertions.assertEquals(contactListCity,contactsListCityDB);
+    }
+
 }

@@ -64,7 +64,7 @@ public class ContactsDBService {
     }
 
     /*This method used to update the phoneNumber
-    @ param takes parameters firtstname and lastname and phoneNumber
+    @ param takes parameters firstName and lastName and phoneNumber
     @ return boolean value true if updated successfully else false
     */
     public boolean updateEmployeeDataUsingStatement(String firstName,String lastName, int phoneNumber) {
@@ -88,6 +88,15 @@ public class ContactsDBService {
     public List<Contact> getDataByDates(LocalDate startDate, LocalDate endDate) throws SQLException {
         String query="Select firstname,lastname , city, state, zip, PhoneNumber , email from contact where date(added_time)" +
                 " between '"+startDate+"'" + " and '"+endDate+"'";
+        return readData(query);
+    }
+
+    /*This method used to read contactsList data From DB for specific city which inturn calls readData()
+     * @param cityName
+     * @return contactlist
+     */
+    public List<Contact> getDataByCity(String cityName) throws SQLException {
+        String query="Select firstname,lastname , city, state, zip, PhoneNumber , email from contact where city='"+cityName+"'";
         return readData(query);
     }
 }
