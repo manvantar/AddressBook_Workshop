@@ -9,20 +9,35 @@ public class Contact {
     String city;
     String state;
     int zip;
-    int phoneNumber;
+    long phoneNumber;
     String email;
+    String type;
 
     /* Constructor to initialize global variables
     @param firstname,lastname,city,state,zip,PhoneNumber,email
      */
-    public Contact(String firstName, String lastName, String city, String state, int zip, int mob, String email) {
+    public Contact(String firstName, String lastName, String city, String state, int zip, long mob, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
-            this.state = state;
+        this.state = state;
         this.zip = zip;
         this.phoneNumber = mob;
         this.email = email;
+    }
+
+    /* Constructor to initialize global variables
+    @param firstname,lastname,city,state,zip,PhoneNumber,email,type
+     */
+    public Contact(String firstName, String lastName, String city, String state, int zip, long mob, String email,String type){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.phoneNumber = mob;
+        this.email = email;
+        this.type=type;
     }
 
     /* Constructor to initialize global variables
@@ -40,11 +55,10 @@ public class Contact {
         System.out.println("Enter zip");
         this.zip=consoleinput.nextInt();
         System.out.println("Enter PhoneNumber");
-        this.phoneNumber=consoleinput.nextInt();
+        this.phoneNumber=consoleinput.nextLong();
         System.out.println("Enter Email");
         this.email=consoleinput.next();
     }
-
 
     public String getFirstName() {
         return firstName;
@@ -61,7 +75,6 @@ public class Contact {
     public String getLastName() {
         return lastName;
     }
-
 
     public void setCity(String city) {
         this.city = city;
@@ -83,11 +96,11 @@ public class Contact {
         this.zip = zip;
     }
 
-    public int getPhoneNumber() {
+    public float getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(long phoneNumber) {
         phoneNumber = phoneNumber;
     }
 
@@ -99,17 +112,16 @@ public class Contact {
         this.email = email;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Contact contact = (Contact) o;
-        return zip == contact.zip && phoneNumber == contact.phoneNumber && Objects.equals(firstName, contact.firstName) && Objects.equals(lastName, contact.lastName) && Objects.equals(city, contact.city) && Objects.equals(state, contact.state) && Objects.equals(email, contact.email);
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstName, lastName, city, state, zip, phoneNumber, email);
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
     }
 
     @Override
@@ -122,7 +134,24 @@ public class Contact {
                 ", zip=" + zip +
                 ", phoneNumber=" + phoneNumber +
                 ", email='" + email + '\'' +
+                ", type='" + type + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Contact contact = (Contact) o;
+        return zip == contact.zip && phoneNumber == contact.phoneNumber &&
+                Objects.equals(firstName, contact.firstName) && Objects.equals(lastName, contact.lastName)
+                && Objects.equals(city, contact.city) && Objects.equals(state, contact.state) &&
+                Objects.equals(email, contact.email) && Objects.equals(type, contact.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, city, state, zip, phoneNumber, email, type);
     }
 }
 

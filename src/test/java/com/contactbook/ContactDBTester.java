@@ -18,6 +18,11 @@ public class ContactDBTester {
     Contact contact2 = new Contact("Srinivar", "KV", "Bengaluru", "Karnataka", 560076, 2121232, "srinivar@gmail.com");
     Contact contact3 = new Contact("inivar", "KV", "Mysuru", "Karnataka", 560076, 2121232, "nivar@gmail.com");
     Contact contact4 = new Contact("iar", "KV", "Vizak", "Andhra", 780076, 2121232, "iar@gmail.com");
+    Contact contact5 = new Contact("Manuew", "KV", "Bengaluru",
+            "Karnataka", 560076, 2121232, "manukvshetty@gmail.com","friend");
+    Contact contact6 = new Contact("Srree", "MV", "Bengaluru",
+            "Karnataka", 560076, 912132343, "manukvshetty@gmail.com","friend");
+
 
     @Test
     public void givenQueryToFetchData_whenMatctedWithExistingList_shouldReturnTrue() throws SQLException {
@@ -78,6 +83,13 @@ public class ContactDBTester {
         List<Contact> contactsListCityDB = addressBook.getContactsBySCityDB("Belagavi");
         List<Contact> contactListCity=addressBook.getContactsByCity("Belagavi");
         Assertions.assertEquals(contactListCity,contactsListCityDB);
+    }
+
+    @Test
+    public void givenContactData_whenInsertedIntoMultipleTable_shouldReturnContactList() throws SQLException {
+        AddressBook addressBook2=new AddressBook();
+        addressBook2.addMultipleContacts(new Contact[]{contact5,contact6});
+        boolean insertion=addressBook2.insertIntoTable();
     }
 
 }

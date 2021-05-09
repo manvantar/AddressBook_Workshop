@@ -347,4 +347,8 @@ public class AddressBook {
         return contactsDBService.getDataByCity(cityName);
     }
 
+    public boolean insertIntoTable() throws SQLException {
+        ContactsDBService contactsDBService=new ContactsDBService();
+        return contactsDBService.insertIntoMultipleTable(contactlist);
+    }
 }
